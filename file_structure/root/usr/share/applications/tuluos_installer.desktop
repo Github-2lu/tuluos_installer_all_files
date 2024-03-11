@@ -1,0 +1,5 @@
+[Desktop Entry]
+Exec=/usr/bin/tuluosinstaller/tuluos_installer
+Icon=/usr/share/icons/tuluos_installer.png
+Name=tuluos_installer
+Type=Application
