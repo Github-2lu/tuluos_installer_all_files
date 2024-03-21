@@ -53,12 +53,8 @@ def createUser(full_name, user_name, user_password, root_password):
     return 0
 
 def initramfs():
-    status = subprocess.run('rm -rv /etc/mkinitcpio.conf.d', shell=True, executable="/bin/bash")
+    status = subprocess.run('mkinitcpio -p default', shell=True, executable="/bin/bash")
     if status.returncode == 0:
-        status = subprocess.run('mkinitcpio -k /boot/vmlinuz-linux -g /boot/initramfs-linux.img --microcode /boot/*-ucode.img', shell=True, executable="/bin/bash")
-        if status.returncode == 0:
-            status = subprocess.run('mkinitcpio -k /boot/vmlinuz-linux -g /boot/initramfs-linux-fallback.img -S autodetect --microcode /boot/*-ucode.img', shell=True, executable="/bin/bash")
-            if status.returncode == 0:
                 return 1
     print("[***] initramfs ERROR.")
     return 0
