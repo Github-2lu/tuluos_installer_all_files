@@ -53,9 +53,11 @@ def createUser(full_name, user_name, user_password, root_password):
     return 0
 
 def initramfs():
-    status = subprocess.run('mkinitcpio -p default', shell=True, executable="/bin/bash")
+    status = subprocess.run('rm -rv /etc/mkinitcpio.d/linux.preset', shell=True, executable="/bin/bash")
     if status.returncode == 0:
-                return 1
+        status = subprocess.run('mkinitcpio -p default', shell=True, executable="/bin/bash")
+        if status.returncode == 0:
+            return 1
     print("[***] initramfs ERROR.")
     return 0
 
