@@ -5,7 +5,7 @@
 
 # Maintainer: Sudip Datta <sudipdatta2002@gmail.com>
 pkgname="tuluos_installer"
-pkgver=0.1.alpha
+pkgver=0.2.alpha
 pkgrel=1
 pkgdesc="TuluOs Installer"
 arch=("x86_64")
