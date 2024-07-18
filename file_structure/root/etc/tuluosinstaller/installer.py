@@ -36,11 +36,11 @@ def mount_boot_partition(boot_partition):
 def unpack():
     status = subprocess.run('sudo unsquashfs -d /mnt /run/archiso/bootmnt/arch/x86_64/airootfs.sfs', shell=True, executable="/bin/bash")
     if status.returncode == 0:
+        # in newer version can't generate ucodes so copy check is removed
         status = subprocess.run('sudo cp -rv /run/archiso/bootmnt/arch/boot/*-ucode.img /mnt/boot', shell=True, executable="/bin/bash")
+        status = subprocess.run('sudo cp -v /run/archiso/bootmnt/arch/boot/x86_64/vmlinuz-linux /mnt/boot', shell=True, executable="/bin/bash")
         if status.returncode == 0:
-            status = subprocess.run('sudo cp -v /run/archiso/bootmnt/arch/boot/x86_64/vmlinuz-linux /mnt/boot', shell=True, executable="/bin/bash")
-            if status.returncode == 0:
-                return 1
+            return 1
     print("[***] unpack ERROR: ")
     return 0
 
